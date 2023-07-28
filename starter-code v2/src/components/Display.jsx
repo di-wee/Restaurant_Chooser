@@ -10,7 +10,7 @@ const Display = () => {
 			<ImagesButton></ImagesButton>
 
 			<div className="anything row">
-				<Button variant="outlined">Anything lor</Button>
+				<Button variant="outlined">Anything lor 🤡</Button>
 			</div>
 		</div>
 	);

@@ -20,7 +20,13 @@ const ImagesButton = () => {
 	return (
 		<div className="buttons">
 			<Box
-				sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}
+				sx={{
+					display: 'flex',
+					flexWrap: 'wrap',
+					minWidth: 300,
+					width: '100%',
+					justifyContent: 'center',
+				}}
 			>
 				{images.map((image) => (
 					<ButtonBase
@@ -29,8 +35,7 @@ const ImagesButton = () => {
 						className="imageButton"
 						style={{
 							width: image.width,
-							margin: '2rem',
-							marginLeft: '5rem',
+							margin: '1rem',
 						}}
 					>
 						<span

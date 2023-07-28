@@ -2,6 +2,8 @@
 .imageButton {
 	position: relative;
 	height: 200px;
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 .imageButton:hover,
