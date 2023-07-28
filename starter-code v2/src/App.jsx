@@ -1,11 +1,14 @@
-import React from "react";
+import React from 'react';
+import Display from './components/Display';
+import List from './components/List';
 
 function App() {
-  return (
-    <div>
-      <h2>GA SEI</h2>
-    </div>
-  );
+	return (
+		<div>
+			<Display></Display>
+			<List></List>
+		</div>
+	);
 }
 
 export default App;
