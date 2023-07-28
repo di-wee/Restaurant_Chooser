@@ -1,13 +1,17 @@
 import React from 'react';
-import AsianCard from './AsianCard';
+import { Button } from '@mui/material';
+import ImagesButton from './ImagesButton';
 
 const Display = () => {
 	return (
-		<div>
+		<div className="display">
 			<h1>What do you feel like eating?</h1>
-			<AsianCard></AsianCard>
-			<button>Western</button>
-			<button>Anything lor</button>
+
+			<ImagesButton></ImagesButton>
+
+			<div className="anything row">
+				<Button variant="outlined">Anything lor</Button>
+			</div>
 		</div>
 	);
 };
