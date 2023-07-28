@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const OverLay = (props) => {};
+const OverLay = () => {};
+
 const WesternModal = (props) => {
 	return (
 		<div>

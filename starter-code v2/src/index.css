@@ -34,11 +34,11 @@ body::before {
 }
 
 .anything {
-	margin: 2rem;
+	margin: 1rem 12rem 0 12rem;
 }
 
 .display h1 {
 	text-align: center;
-	margin: 3rem;
+	margin: 4rem 0rem 1rem 0rem;
 	color: rgba(0, 0, 0, 0.8);
 }

@@ -1,21 +1,36 @@
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import './ImageButton.css';
+import AsianModal from './AsianModal';
+import WesternModal from './WesternModal';
 
 const ImagesButton = () => {
+	const [showAsian, setShowAsian] = useState(false);
+	const [showWestern, setShowWestern] = useState(false);
+
 	const images = [
 		{
 			url: '../../images/asian.png',
 			title: 'Asian Food',
-			width: '40%',
+			width: '25%',
 		},
 		{
 			url: '../../images/western.png',
 			title: 'Western Food',
-			width: '40%',
+			width: '25%',
 		},
 	];
+	const handleOnClick = (image) => {
+		if (image.title === 'Asian Food') {
+			setShowAsian(true);
+			console.log('asian');
+		} else {
+			setShowWestern(true);
+			console.log('western');
+		}
+	};
 
 	return (
 		<div className="buttons">
@@ -35,7 +50,10 @@ const ImagesButton = () => {
 						className="imageButton"
 						style={{
 							width: image.width,
-							margin: '1rem',
+							margin: '1.5rem',
+						}}
+						onClick={() => {
+							handleOnClick(image);
 						}}
 					>
 						<span
@@ -59,6 +77,9 @@ const ImagesButton = () => {
 					</ButtonBase>
 				))}
 			</Box>
+
+			{showAsian && <AsianModal setShowAsian={setShowAsian}></AsianModal>}
+			{showWestern && <WesternModal></WesternModal>}
 		</div>
 	);
 };
