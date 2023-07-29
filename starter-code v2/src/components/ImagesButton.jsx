@@ -6,7 +6,8 @@ import './ImageButton.css';
 import AsianModal from './AsianModal';
 import WesternModal from './WesternModal';
 
-const ImagesButton = () => {
+const ImagesButton = (props) => {
+	//states for modals opening and closing
 	const [showAsian, setShowAsian] = useState(false);
 	const [showWestern, setShowWestern] = useState(false);
 

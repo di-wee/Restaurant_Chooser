@@ -18,7 +18,7 @@ const AsianModal = (props) => {
 			width: '25%',
 		},
 		{
-			url: '../../images/japanese.png',
+			url: '../../images/jap.png',
 			title: 'Japanese Food',
 			width: '25%',
 		},
