@@ -10,37 +10,76 @@ import {
 import './ImageButton.css';
 
 const AsianModal = (props) => {
-	const { setShowAsian, showAsian } = props;
+	const { setShowAsian, showAsian, restaurant, setRestaurant } = props;
+	//filtering data according to button choice
+	const filterRestaurant = (restcuisine) => {
+		const filter = restaurant.filter(
+			(place) => place.tags.cuisine === restcuisine && place.tags.name
+		);
+		setRestaurant(filter);
+		console.log(restaurant);
+	};
+
+	const handleClick = (item) => {
+		switch (item.cuisine) {
+			case 'chinese':
+				filterRestaurant(item.cuisine);
+				break;
+			case 'japanese':
+				filterRestaurant(item.cuisine);
+				break;
+			case 'korean':
+				filterRestaurant(item.cuisine);
+				break;
+			case 'thai':
+				filterRestaurant(item.cuisine);
+				break;
+			case 'vietamese':
+				filterRestaurant(item.cuisine);
+				break;
+			case 'indian':
+				filterRestaurant(item.cuisine);
+				break;
+		}
+		setShowAsian(false);
+	};
+
 	const images = [
 		{
 			url: '../../images/chinese.png',
 			title: 'Chinese Food',
 			width: '25%',
+			cuisine: 'chinese',
 		},
 		{
 			url: '../../images/jap.png',
 			title: 'Japanese Food',
 			width: '25%',
+			cuisine: 'japanese',
 		},
 		{
 			url: '../../images/korean.png',
 			title: 'Korean Food',
 			width: '25%',
+			cuisine: 'korean',
 		},
 		{
 			url: '../../images/thai.png',
 			title: 'Thai Food',
 			width: '25%',
+			cuisine: 'thai',
 		},
 		{
 			url: '../../images/viet.png',
 			title: 'Viet Food',
 			width: '25%',
+			cuisine: 'vietnamese',
 		},
 		{
 			url: '../../images/indian.png',
 			title: 'Indian Food',
 			width: '25%',
+			cuisine: 'indian',
 		},
 	];
 
@@ -71,6 +110,7 @@ const AsianModal = (props) => {
 								width: image.width,
 								margin: '1.5rem',
 							}}
+							onClick={() => handleClick(image)}
 						>
 							<span
 								className="imageSrc"
