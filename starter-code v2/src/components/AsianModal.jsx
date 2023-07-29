@@ -10,7 +10,15 @@ import {
 import './ImageButton.css';
 
 const AsianModal = (props) => {
-	const { setShowAsian, showAsian, restaurant, setRestaurant } = props;
+	const {
+		setShowAsian,
+		showAsian,
+		restaurant,
+		setRestaurant,
+		showList,
+		setShowList,
+		getRestaurant,
+	} = props;
 	//filtering data according to button choice
 	const filterRestaurant = (restcuisine) => {
 		const filter = restaurant.filter(
@@ -41,7 +49,9 @@ const AsianModal = (props) => {
 				filterRestaurant(item.cuisine);
 				break;
 		}
+
 		setShowAsian(false);
+		setShowList(true);
 	};
 
 	const images = [

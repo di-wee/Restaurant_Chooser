@@ -3,10 +3,11 @@ import { Button } from '@mui/material';
 import ImagesButton from './ImagesButton';
 import RestaurantContext from '../RestaurantContext';
 
-const Display = () => {
+const Display = (props) => {
 	//managing states
 	const restaurantContext = useContext(RestaurantContext);
-	const { restaurant, setRestaurant } = restaurantContext;
+	const { restaurant, setRestaurant, showList, setShowList } =
+		restaurantContext;
 	//singapore's coordinates
 	const LATITUDE = 1.3521;
 	const LONGITUDE = 103.8198;
@@ -27,6 +28,9 @@ const Display = () => {
 			<ImagesButton
 				restaurant={restaurant}
 				setRestaurant={setRestaurant}
+				showList={showList}
+				setShowList={setShowList}
+				getRestaurant={getRestaurant}
 			></ImagesButton>
 			;
 			<div className="anything row">

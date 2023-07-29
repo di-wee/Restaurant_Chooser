@@ -7,7 +7,8 @@ import AsianModal from './AsianModal';
 import WesternModal from './WesternModal';
 
 const ImagesButton = (props) => {
-	const { restaurant, setRestaurant } = props;
+	const { restaurant, setRestaurant, showList, setShowList, getRestaurant } =
+		props;
 	//states for modals opening and closing
 	const [showAsian, setShowAsian] = useState(false);
 	const [showWestern, setShowWestern] = useState(false);
@@ -86,6 +87,9 @@ const ImagesButton = (props) => {
 					setShowAsian={setShowAsian}
 					restaurant={restaurant}
 					setRestaurant={setRestaurant}
+					showList={showList}
+					setShowList={setShowList}
+					getRestaurant={getRestaurant}
 				></AsianModal>
 			)}
 			{showWestern && (
@@ -94,6 +98,8 @@ const ImagesButton = (props) => {
 					setShowWestern={setShowWestern}
 					restaurant={restaurant}
 					setRestaurant={setRestaurant}
+					showList={showList}
+					setShowList={setShowList}
 				></WesternModal>
 			)}
 		</div>
