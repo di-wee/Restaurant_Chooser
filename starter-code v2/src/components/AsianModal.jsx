@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '@mui/base';
 import {
 	Typography,
 	Dialog,
@@ -11,7 +10,7 @@ import {
 import './ImageButton.css';
 
 const AsianModal = (props) => {
-	const { setShowAsian } = props;
+	const { setShowAsian, showAsian } = props;
 	const images = [
 		{
 			url: '../../images/chinese.png',
@@ -44,16 +43,14 @@ const AsianModal = (props) => {
 			width: '25%',
 		},
 	];
+
+	const handleClose = () => {
+		setShowAsian(false);
+	};
+
 	return (
-		<Dialog
-			onClose={() => {
-				setShowAsian(false);
-			}}
-			open={() => {
-				setShowAsian(true);
-			}}
-		>
-			<DialogTitle>Asian Food</DialogTitle>
+		<Dialog onClose={handleClose} open={showAsian}>
+			<DialogTitle style={{ textAlign: 'center' }}>Asian Food</DialogTitle>
 			<DialogContent dividers>
 				<Box
 					sx={{
@@ -62,6 +59,7 @@ const AsianModal = (props) => {
 						minWidth: 600,
 						width: '100%',
 						justifyContent: 'center',
+						justifyItems: 'center',
 					}}
 				>
 					{images.map((image) => (

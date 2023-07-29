@@ -78,8 +78,18 @@ const ImagesButton = () => {
 				))}
 			</Box>
 
-			{showAsian && <AsianModal setShowAsian={setShowAsian}></AsianModal>}
-			{showWestern && <WesternModal></WesternModal>}
+			{showAsian && (
+				<AsianModal
+					showAsian={showAsian}
+					setShowAsian={setShowAsian}
+				></AsianModal>
+			)}
+			{showWestern && (
+				<WesternModal
+					showWestern={showWestern}
+					setShowWestern={setShowWestern}
+				></WesternModal>
+			)}
 		</div>
 	);
 };
