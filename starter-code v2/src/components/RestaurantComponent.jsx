@@ -1,24 +1,30 @@
 import { Delete } from '@mui/icons-material';
-import { Button } from '@mui/material';
-import React from 'react';
+import { Button, Grid, Typography } from '@mui/material';
+import React, { useContext } from 'react';
+import RestaurantContext from '../RestaurantContext';
+import StarIcon from '@mui/icons-material/Star';
 
 const RestaurantComponent = (props) => {
-	const { restaurant, setRestaurant } = props;
-	const firstFiveRest = restaurant.slice(0, 5);
+	const restaurantContext = useContext(RestaurantContext);
+	const { filteredRestaurant } = restaurantContext;
+
+	const firstFiveRest = filteredRestaurant.slice(0, 5);
 	return (
-		<div>
-			{firstFiveRest.map((place) => {
-				return (
-					<>
-						<div>Name of Restaurant: {place.tags.name} </div>
-						<Button variant="outlined">Shortlist</Button>
-						<Button variant="outlined" startIcon={<Delete />}>
+		<Grid container spacing={1} marginLeft={'8rem'} marginTop={'1rem'}>
+			{firstFiveRest.map((place) => (
+				<Grid item md={5} key={place.id}>
+					<div className="restList">
+						<Typography>Name of Restaurant: {place.tags.name}</Typography>
+						<Button variant="outlined" startIcon={<StarIcon></StarIcon>}>
+							Shortlist
+						</Button>
+						<Button variant="outlined" startIcon={<Delete></Delete>}>
 							Delete
 						</Button>
-					</>
-				);
-			})}
-		</div>
+					</div>
+				</Grid>
+			))}
+		</Grid>
 	);
 };
 

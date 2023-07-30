@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	Typography,
 	Dialog,
@@ -8,23 +8,19 @@ import {
 	ButtonBase,
 } from '@mui/material';
 import './ImageButton.css';
+import RestaurantContext from '../RestaurantContext';
 
 const AsianModal = (props) => {
-	const {
-		setShowAsian,
-		showAsian,
-		restaurant,
-		setRestaurant,
-		showList,
-		setShowList,
-		getRestaurant,
-	} = props;
+	const restaurantContext = useContext(RestaurantContext);
+	//to reset list without directly manipulating OG state; a shallow copy
+	const { setFilteredRestaurant } = restaurantContext;
+	const { setShowAsian, showAsian, restaurant, setShowList } = props;
 	//filtering data according to button choice
 	const filterRestaurant = (restcuisine) => {
 		const filter = restaurant.filter(
 			(place) => place.tags.cuisine === restcuisine && place.tags.name
 		);
-		setRestaurant(filter);
+		setFilteredRestaurant(filter);
 		console.log(restaurant);
 	};
 
@@ -126,18 +122,18 @@ const AsianModal = (props) => {
 								className="imageSrc"
 								style={{ backgroundImage: `url(${image.url})` }}
 							></span>
-							<span className="imageBackdrop MuiImageBackdrop-root"></span>
+							<span className="imageBackdrop"></span>
 							<span className="image">
 								<Typography
 									style={{
 										position: 'relative',
 										padding: '16px',
 										paddingTop: '8px',
-										paddingBottom: 'calc(8px + 6px)',
+										paddingBottom: '14px',
 									}}
 								>
 									{image.title}
-									<span className="imageMarked MuiImageMarked-root"></span>
+									<span className="imageMarked"></span>
 								</Typography>
 							</span>
 						</ButtonBase>
