@@ -13,7 +13,7 @@ import RestaurantContext from '../RestaurantContext';
 const AsianModal = (props) => {
 	const restaurantContext = useContext(RestaurantContext);
 	//to reset list without directly manipulating OG state; a shallow copy
-	const { setFilteredRestaurant } = restaurantContext;
+	const { setFilteredRestaurant, filteredRestaurant } = restaurantContext;
 	const { setShowAsian, showAsian, restaurant, setShowList } = props;
 	//filtering data according to button choice
 	const filterRestaurant = (restcuisine) => {
@@ -38,7 +38,7 @@ const AsianModal = (props) => {
 			case 'thai':
 				filterRestaurant(item.cuisine);
 				break;
-			case 'vietamese':
+			case 'vietnamese':
 				filterRestaurant(item.cuisine);
 				break;
 			case 'indian':

@@ -6,7 +6,8 @@ import StarIcon from '@mui/icons-material/Star';
 
 const RestaurantComponent = (props) => {
 	const restaurantContext = useContext(RestaurantContext);
-	const { filteredRestaurant } = restaurantContext;
+	const { filteredRestaurant, filteredCafe, setFilteredRestaurant } =
+		restaurantContext;
 
 	const firstFiveRest = filteredRestaurant.slice(0, 5);
 	return (
@@ -14,7 +15,10 @@ const RestaurantComponent = (props) => {
 			{firstFiveRest.map((place) => (
 				<Grid item md={5} key={place.id}>
 					<div className="restList">
-						<Typography>Name of Restaurant: {place.tags.name}</Typography>
+						<Typography>
+							Name of Restaurant:{' '}
+							{filteredRestaurant ? place.tags.name : setFilteredRestaurant([])}
+						</Typography>
 						<Button variant="outlined" startIcon={<StarIcon></StarIcon>}>
 							Shortlist
 						</Button>

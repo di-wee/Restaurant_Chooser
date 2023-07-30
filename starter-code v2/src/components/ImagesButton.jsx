@@ -15,6 +15,7 @@ const ImagesButton = () => {
 	//states for modals opening and closing
 	const [showAsian, setShowAsian] = useState(false);
 	const [showWestern, setShowWestern] = useState(false);
+
 	//singapore's coordinates
 	const LATITUDE = 1.3521;
 	const LONGITUDE = 103.8198;
@@ -26,7 +27,8 @@ const ImagesButton = () => {
 	};
 
 	useEffect(() => {
-		getRestaurant(); // get restaurant data on mount
+		getRestaurant();
+		// get restaurant data on mount
 	}, []);
 
 	const images = [

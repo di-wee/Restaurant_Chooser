@@ -5,8 +5,10 @@ import RestaurantContext from './RestaurantContext';
 
 function App() {
 	const [restaurant, setRestaurant] = useState([]);
+	const [cafe, setCafe] = useState([]);
 	const [showList, setShowList] = useState(false);
 	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+
 	return (
 		<div>
 			<RestaurantContext.Provider
@@ -17,6 +19,8 @@ function App() {
 					setShowList,
 					filteredRestaurant,
 					setFilteredRestaurant,
+					cafe,
+					setCafe,
 				}}
 			>
 				<Display></Display>
