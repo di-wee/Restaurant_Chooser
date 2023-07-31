@@ -1,24 +1,29 @@
-import { Delete } from '@mui/icons-material';
 import { Button, Grid, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import RestaurantContext from '../RestaurantContext';
+import { indigo } from '@mui/material/colors';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { indigo, deepOrange } from '@mui/material/colors';
 
 const RestaurantComponent = (props) => {
 	const restaurantContext = useContext(RestaurantContext);
-	const {
-		filteredRestaurant,
-		filteredCafe,
-		setFilteredRestaurant,
-		setShowList,
-	} = restaurantContext;
+	const { filteredRestaurant, setFilteredRestaurant, setShowList } =
+		restaurantContext;
+	const [shortlist, setShortlist] = useState({});
+	//setting boolean; true/ false to filtered restaurant. if previous true, then set to false. vice versa
+	const handleShortlist = (placeID) => {
+		setShortlist((prev) => ({
+			...prev,
+			[placeID]: !prev[placeID],
+		}));
+	};
+
 	const buttonStyle = {
 		width: '20%',
 		padding: '2px',
 		margin: '2rem',
 	};
-	const cantDecide = () => [setShowList(false)];
+	const cantDecide = () => setShowList(false);
 	const firstFiveRest = filteredRestaurant.slice(0, 5);
 	return (
 		<Grid container spacing={1} marginLeft={'6rem'}>
@@ -26,22 +31,24 @@ const RestaurantComponent = (props) => {
 				<Grid item md={5} key={place.id}>
 					<div className="restList">
 						<Typography>
-							Name of Restaurant:{' '}
+							Name of Restaurant: {/* to reset selection */}
 							{filteredRestaurant ? place.tags.name : setFilteredRestaurant([])}
 						</Typography>
 						<Button
 							sx={{ backgroundColor: indigo[300], color: '#FFFFFF' }}
 							variant="contained"
-							startIcon={<StarIcon></StarIcon>}
+							// directly acessing the true/false value of each keyvalue pair
+							startIcon={
+								shortlist[place.id] ? (
+									<StarIcon></StarIcon>
+								) : (
+									<StarBorderIcon></StarBorderIcon>
+								)
+							}
+							onClick={() => handleShortlist(place.id)}
+							id={place.id}
 						>
 							Shortlist
-						</Button>
-						<Button
-							sx={{ backgroundColor: deepOrange[900], color: '#FFFFFF' }}
-							variant="contained"
-							startIcon={<Delete></Delete>}
-						>
-							Delete
 						</Button>
 					</div>
 				</Grid>

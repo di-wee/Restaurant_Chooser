@@ -21,7 +21,7 @@ const AsianModal = (props) => {
 			(place) => place.tags.cuisine === restcuisine && place.tags.name
 		);
 		setFilteredRestaurant(filter);
-		console.log(restaurant);
+		console.log(filteredRestaurant);
 	};
 
 	const handleClick = (item) => {
