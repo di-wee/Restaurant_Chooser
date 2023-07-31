@@ -10,7 +10,7 @@ const RestaurantComponent = (props) => {
 	const { filteredRestaurant, setFilteredRestaurant, setShowList } =
 		restaurantContext;
 	const [shortlist, setShortlist] = useState({});
-	//setting boolean; true/ false to filtered restaurant. if previous true, then set to false. vice versa
+	//setting boolean; true/ false to filtered restaurant. if previously true, then set to false. vice versa
 	const handleShortlist = (placeID) => {
 		setShortlist((prev) => ({
 			...prev,

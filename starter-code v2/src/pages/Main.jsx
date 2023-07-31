@@ -19,6 +19,7 @@ const Main = () => {
 	const [cafe, setCafe] = useState([]);
 	const [showList, setShowList] = useState(false);
 	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+	const [shortlistedRestaurant, setshortlistedRestaurant] = useState([]);
 
 	return (
 		<div>
