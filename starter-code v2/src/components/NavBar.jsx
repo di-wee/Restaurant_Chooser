@@ -13,7 +13,7 @@ import StarIcon from '@mui/icons-material/Star';
 const NavBar = () => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static" color="transparent">
+			<AppBar position="static">
 				<Toolbar>
 					<IconButton>
 						<MenuBookIcon></MenuBookIcon>
@@ -21,7 +21,11 @@ const NavBar = () => {
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						RESTAURANT CHOOSER
 					</Typography>
-					<Button color="inherit" endIcon={<StarIcon></StarIcon>}>
+					<Button
+						color="inherit"
+						endIcon={<StarIcon></StarIcon>}
+						sx={{ flexGrow: 1 }}
+					>
 						SHORTLIST
 					</Button>
 				</Toolbar>

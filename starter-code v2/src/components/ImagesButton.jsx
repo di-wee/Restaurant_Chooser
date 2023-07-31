@@ -35,12 +35,12 @@ const ImagesButton = () => {
 		{
 			url: '../../images/asian.png',
 			title: 'Asian Food',
-			width: '25%',
+			width: '35%',
 		},
 		{
 			url: '../../images/western.png',
 			title: 'Western Food',
-			width: '25%',
+			width: '35%',
 		},
 	];
 

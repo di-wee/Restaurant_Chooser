@@ -1,15 +1,35 @@
-import React, { useContext } from 'react';
-import { Button } from '@mui/material';
+import React from 'react';
+import { Button, Typography, Box } from '@mui/material';
 import ImagesButton from './ImagesButton';
-import RestaurantContext from '../RestaurantContext';
+import { grey, indigo } from '@mui/material/colors';
 
 const Display = () => {
+	// creating theme
+	const styling = {
+		backgroundColor: 'rgba(255,255,255, 0.5)',
+		borderColor: 'rgba(255,255,255, 0.7)',
+		border: '2px solid rgba(128, 128, 128, 0.9)',
+		borderRadius: '5px',
+		padding: '16px',
+	};
 	return (
 		<div className="display">
-			<h1>What do you feel like eating?</h1>
+			<Box sx={styling}>
+				<Typography variant="h4" textAlign={'center'}>
+					What do you feel like eating?
+				</Typography>
+			</Box>
 			<ImagesButton></ImagesButton>
 			<div className="anything row">
-				<Button variant="contained">Anything lor 🤡</Button>
+				<Button
+					variant="contained"
+					sx={{
+						backgroundColor: indigo[300],
+						color: '#FFFFFF',
+					}}
+				>
+					Anything lor 🤡
+				</Button>
 			</div>
 		</div>
 	);

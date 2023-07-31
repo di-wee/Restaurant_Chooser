@@ -6,18 +6,29 @@ import NavBar from './components/NavBar';
 import { createTheme, ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import '@fontsource/roboto-condensed';
+import { Route, Routes, Navigate } from 'react-router-dom/';
 
-//creating dark theme
+//creating theme for MUI
 const darkerTheme = createTheme({
 	palette: {
-		primary: grey,
+		primary: {
+			main: grey[50],
+		},
 	},
 	typography: {
 		fontFamily: 'Roboto Condensed',
 	},
 });
+const backgroundDesign = {
+	margin: '4rem 6rem 1rem 6rem',
+	height: '100%',
+	padding: '2rem',
+	backgroundColor: 'rgba(255,255,255, 0.7)',
+	borderRadius: '2%',
+};
 
 function App() {
+	//managing states for usage
 	const [restaurant, setRestaurant] = useState([]);
 	const [cafe, setCafe] = useState([]);
 	const [showList, setShowList] = useState(false);
@@ -39,8 +50,10 @@ function App() {
 					}}
 				>
 					<NavBar></NavBar>
-					<Display></Display>
-					{showList && <List></List>}
+
+					<Box sx={backgroundDesign}>
+						{showList ? <List></List> : <Display></Display>}
+					</Box>
 				</RestaurantContext.Provider>
 			</div>
 		</ThemeProvider>
