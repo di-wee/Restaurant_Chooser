@@ -11,6 +11,7 @@ const Display = () => {
 		border: '2px solid rgba(128, 128, 128, 0.9)',
 		borderRadius: '5px',
 		padding: '16px',
+		margin: '0 5rem 0 5rem',
 	};
 	return (
 		<div className="display">
