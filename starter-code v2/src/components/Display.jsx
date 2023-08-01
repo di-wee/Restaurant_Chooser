@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Typography, Box } from '@mui/material';
+import { Button, Typography, Box, TextField } from '@mui/material';
 import ImagesButton from './ImagesButton';
 import { indigo } from '@mui/material/colors';
 import Anything from './Anything';
@@ -15,6 +15,12 @@ const Display = () => {
 		margin: '0 6rem 0 6rem',
 	};
 
+	const inputSx = {
+		margin: '0.5rem',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+	};
 	const [showAnything, setShowAnything] = useState(false);
 	const handleOnClick = () => {
 		showAnything ? setShowAnything(false) : setShowAnything(true);
@@ -39,6 +45,17 @@ const Display = () => {
 				>
 					{showAnything ? 'Decide again?' : 'Anything lor 🤡'}
 				</Button>
+				<Box sx={inputSx}>
+					<TextField
+						id="filled-basic"
+						label="Where is your location?"
+						variant="filled"
+						sx={{ margin: '0.5rem', width: '100%' }}
+					/>
+					<Button sx={{ width: '20%', height: '50%' }} variant="contained">
+						Submit
+					</Button>
+				</Box>
 			</div>
 		</div>
 	);

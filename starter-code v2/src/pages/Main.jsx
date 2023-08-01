@@ -7,7 +7,7 @@ import RestaurantComponent from '../components/RestaurantComponent';
 
 //styling for MUI
 const backgroundDesign = {
-	margin: '4rem 20rem 1rem 20rem',
+	margin: '2rem 20rem 0 20rem',
 	height: '100%',
 	padding: '2rem',
 	backgroundColor: 'rgba(255,255,255, 0.7)',
