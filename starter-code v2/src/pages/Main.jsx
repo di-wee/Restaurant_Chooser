@@ -1,44 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Display from '../components/Display';
-import List from '../components/List';
 import RestaurantContext from '../RestaurantContext';
 import { Box } from '@mui/material';
 import '@fontsource/roboto-condensed';
+import RestaurantComponent from '../components/RestaurantComponent';
 
+//styling for MUI
 const backgroundDesign = {
-	margin: '4rem 12rem 1rem 12rem',
+	margin: '4rem 20rem 1rem 20rem',
 	height: '100%',
 	padding: '2rem',
 	backgroundColor: 'rgba(255,255,255, 0.7)',
 	borderRadius: '2%',
-	flexGrow: '1',
+	flexGrow: '2',
 };
 const Main = () => {
 	//managing states for usage
-	const [restaurant, setRestaurant] = useState([]);
-	const [cafe, setCafe] = useState([]);
-	const [showList, setShowList] = useState(false);
-	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-	const [shortlistedRestaurant, setshortlistedRestaurant] = useState([]);
+	const restaurantContext = useContext(RestaurantContext);
+	const { showList } = restaurantContext;
 
 	return (
 		<div>
-			<RestaurantContext.Provider
-				value={{
-					restaurant,
-					setRestaurant,
-					showList,
-					setShowList,
-					filteredRestaurant,
-					setFilteredRestaurant,
-					cafe,
-					setCafe,
-				}}
-			>
-				<Box sx={backgroundDesign}>
-					{showList ? <List></List> : <Display></Display>}
-				</Box>
-			</RestaurantContext.Provider>
+			<Box sx={backgroundDesign}>
+				{showList ? (
+					<RestaurantComponent></RestaurantComponent>
+				) : (
+					<Display></Display>
+				)}
+			</Box>
 		</div>
 	);
 };

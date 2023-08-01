@@ -1,18 +1,14 @@
-import {
-	Route,
-	Routes,
-	Navigate,
-	BrowserRouter,
-	Link,
-} from 'react-router-dom/';
+import { Route, Routes, BrowserRouter } from 'react-router-dom/';
 import Main from './pages/Main';
 import Shortlist from './pages/Shortlist';
 import NavBar from './components/NavBar';
-import React from 'react';
+import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import '@fontsource/roboto-condensed';
+import RestaurantContext from './RestaurantContext';
 
+//main theme for app
 const darkerTheme = createTheme({
 	palette: {
 		primary: {
@@ -25,18 +21,42 @@ const darkerTheme = createTheme({
 });
 
 function App() {
+	//managing states for usage
+	const [restaurant, setRestaurant] = useState([]);
+	const [cafe, setCafe] = useState([]);
+	const [showList, setShowList] = useState(false);
+	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+	const [shortlistedRestaurant, setShortlistedRestaurant] = useState([]);
+	const [shallowCopy, setShallowCopy] = useState([]);
 	return (
 		<BrowserRouter>
 			<ThemeProvider theme={darkerTheme}>
-				<header>
-					<NavBar></NavBar>
-				</header>
-				<main>
-					<Routes>
-						<Route path="/" element={<Main></Main>}></Route>
-						<Route path="shortlist" element={<Shortlist></Shortlist>}></Route>
-					</Routes>
-				</main>
+				<RestaurantContext.Provider
+					value={{
+						restaurant,
+						setRestaurant,
+						showList,
+						setShowList,
+						filteredRestaurant,
+						setFilteredRestaurant,
+						cafe,
+						setCafe,
+						shortlistedRestaurant,
+						setShortlistedRestaurant,
+						shallowCopy,
+						setShallowCopy,
+					}}
+				>
+					<header>
+						<NavBar></NavBar>
+					</header>
+					<main>
+						<Routes>
+							<Route path="/" element={<Main></Main>}></Route>
+							<Route path="shortlist" element={<Shortlist></Shortlist>}></Route>
+						</Routes>
+					</main>
+				</RestaurantContext.Provider>
 			</ThemeProvider>
 		</BrowserRouter>
 	);

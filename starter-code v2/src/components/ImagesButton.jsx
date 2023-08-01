@@ -44,6 +44,7 @@ const ImagesButton = () => {
 		},
 	];
 
+	//for modal to appear
 	const handleOnClick = (image) => {
 		if (image.title === 'Asian Food') {
 			setShowAsian(true);
@@ -55,7 +56,6 @@ const ImagesButton = () => {
 	};
 
 	return (
-		//mui styling; box is the 'container' for mui components
 		<div className="buttons">
 			<Box
 				sx={{
@@ -71,7 +71,7 @@ const ImagesButton = () => {
 						focusRipple
 						key={image.title}
 						className="imageButton"
-						style={{
+						sx={{
 							width: image.width,
 							margin: '1.5rem',
 						}}
@@ -86,7 +86,7 @@ const ImagesButton = () => {
 						<span className="imageBackdrop"></span>
 						<span className="image">
 							<Typography
-								style={{
+								sx={{
 									position: 'relative',
 									padding: '16px',
 									paddingTop: '8px',

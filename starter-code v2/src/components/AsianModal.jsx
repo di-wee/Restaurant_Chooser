@@ -11,8 +11,9 @@ import './ImageButton.css';
 import RestaurantContext from '../RestaurantContext';
 
 const AsianModal = (props) => {
+	//state management
 	const restaurantContext = useContext(RestaurantContext);
-	//to reset list without directly manipulating OG state; a shallow copy
+	//to reset list without directly manipulating OG restaurant state; creating a shallow copy
 	const { setFilteredRestaurant, filteredRestaurant } = restaurantContext;
 	const { setShowAsian, showAsian, restaurant, setShowList } = props;
 	//filtering data according to button choice
@@ -95,7 +96,7 @@ const AsianModal = (props) => {
 
 	return (
 		<Dialog onClose={handleClose} open={showAsian}>
-			<DialogTitle style={{ textAlign: 'center' }}>Asian Food</DialogTitle>
+			<DialogTitle sx={{ textAlign: 'center' }}>Asian Food</DialogTitle>
 			<DialogContent dividers>
 				<Box
 					sx={{
@@ -112,7 +113,7 @@ const AsianModal = (props) => {
 							focusRipple
 							key={image.title}
 							className="imageButton"
-							style={{
+							sx={{
 								width: image.width,
 								margin: '1.5rem',
 							}}

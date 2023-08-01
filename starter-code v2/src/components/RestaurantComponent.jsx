@@ -7,15 +7,23 @@ import StarIcon from '@mui/icons-material/Star';
 
 const RestaurantComponent = (props) => {
 	const restaurantContext = useContext(RestaurantContext);
-	const { filteredRestaurant, setFilteredRestaurant, setShowList } =
-		restaurantContext;
+	const {
+		filteredRestaurant,
+		setFilteredRestaurant,
+		setShowList,
+		setShortlistedRestaurant,
+		shallowCopy,
+		setShallowCopy,
+	} = restaurantContext;
 	const [shortlist, setShortlist] = useState({});
 	//setting boolean; true/ false to filtered restaurant. if previously true, then set to false. vice versa
-	const handleShortlist = (placeID) => {
+	const handleShortlist = (place) => {
 		setShortlist((prev) => ({
 			...prev,
-			[placeID]: !prev[placeID],
+			[place.id]: !prev[place.id],
 		}));
+		setShortlistedRestaurant((prevShortlist) => [...prevShortlist, place]);
+		setShallowCopy((prevShortlist) => [...prevShortlist, place]);
 	};
 
 	const buttonStyle = {
@@ -45,7 +53,7 @@ const RestaurantComponent = (props) => {
 									<StarBorderIcon></StarBorderIcon>
 								)
 							}
-							onClick={() => handleShortlist(place.id)}
+							onClick={() => handleShortlist(place)}
 							id={place.id}
 						>
 							Shortlist
