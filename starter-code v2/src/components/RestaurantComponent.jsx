@@ -34,7 +34,7 @@ const RestaurantComponent = (props) => {
 	const cantDecide = () => setShowList(false);
 	const firstFiveRest = filteredRestaurant.slice(0, 5);
 	return (
-		<Grid container spacing={1} marginLeft={'6rem'}>
+		<Grid container spacing={1} alignItems={'center'} justifyContent={'center'}>
 			{firstFiveRest.map((place) => (
 				<Grid item md={5} key={place.id}>
 					<div className="restList">

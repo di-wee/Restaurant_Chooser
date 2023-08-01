@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Typography, Box } from '@mui/material';
 import ImagesButton from './ImagesButton';
 import { indigo } from '@mui/material/colors';
+import Anything from './Anything';
 
 const Display = () => {
 	// creating theme/styling
@@ -13,6 +14,11 @@ const Display = () => {
 		padding: '16px',
 		margin: '0 6rem 0 6rem',
 	};
+
+	const [showAnything, setShowAnything] = useState(false);
+	const handleOnClick = () => {
+		showAnything ? setShowAnything(false) : setShowAnything(true);
+	};
 	return (
 		<div className="display">
 			<Box sx={styling}>
@@ -20,7 +26,8 @@ const Display = () => {
 					What do you feel like eating?
 				</Typography>
 			</Box>
-			<ImagesButton></ImagesButton>
+			{showAnything ? <Anything></Anything> : <ImagesButton></ImagesButton>}
+
 			<div className="anything row">
 				<Button
 					variant="contained"
@@ -28,8 +35,9 @@ const Display = () => {
 						backgroundColor: indigo[300],
 						color: '#FFFFFF',
 					}}
+					onClick={handleOnClick}
 				>
-					Anything lor 🤡
+					{showAnything ? 'Decide again?' : 'Anything lor 🤡'}
 				</Button>
 			</div>
 		</div>

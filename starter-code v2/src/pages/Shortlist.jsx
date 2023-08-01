@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RestaurantContext from '../RestaurantContext';
-import { Box, Button, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Grid, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 
 const backgroundDesign = {
@@ -13,34 +13,55 @@ const backgroundDesign = {
 };
 const Shortlist = () => {
 	const restaurantContext = useContext(RestaurantContext);
-	const { shortlistedRestaurant } = restaurantContext;
+	const {
+		shortlistedRestaurant,
+		setShortlistedRestaurant,
+		setShallowCopy,
+		shallowCopy,
+	} = restaurantContext;
 
-	const handleDelete = (index) => {
-		shortlistedRestaurant.splice(index, 1);
+	const handleDelete = (places) => {
+		const filtered = shortlistedRestaurant.filter((restaurant) => {
+			return restaurant.tags.name !== places.tags.name;
+		});
+
+		setShortlistedRestaurant(filtered);
 	};
-
 	return (
 		<div>
-			<Box sx={backgroundDesign}>
-				<Typography variant="h6" sx={{ textAlign: 'center' }}>
-					Shortlisted Restaurant
-				</Typography>
-				<Divider sx={{ margin: '1rem' }}></Divider>
-				{shortlistedRestaurant.map((place, index) => {
-					return (
-						<div>
-							<Typography>Restaurant: {place.tags.name}</Typography>
-							<Button
-								sx={{ backgroundColor: deepOrange[900], color: '#FFFFFF' }}
-								variant="contained"
-								onClick={() => handleDelete(index)}
+			<Grid container spacing={1} alignItems="center" justifyContent="center">
+				<Grid item xs={12} md={10}>
+					<Box sx={backgroundDesign}>
+						<Typography variant="h6" sx={{ textAlign: 'center' }}>
+							Shortlisted Restaurant
+						</Typography>
+						<Divider sx={{ margin: '1rem' }}></Divider>
+						{shortlistedRestaurant.map((place) => (
+							<Grid
+								key={place.id}
+								container
+								item
+								alignItems="center"
+								justifyContent="space-between"
+								padding={'1rem'}
 							>
-								Delete
-							</Button>
-						</div>
-					);
-				})}
-			</Box>
+								<Grid item>
+									<Typography>Name of Restaurant: {place.tags.name}</Typography>
+								</Grid>
+								<Grid item>
+									<Button
+										sx={{ backgroundColor: deepOrange[900], color: '#FFFFFF' }}
+										variant="contained"
+										onClick={() => handleDelete(place)}
+									>
+										Delete
+									</Button>
+								</Grid>
+							</Grid>
+						))}
+					</Box>
+				</Grid>
+			</Grid>
 		</div>
 	);
 };
