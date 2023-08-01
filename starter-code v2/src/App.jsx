@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom/';
 import Main from './pages/Main';
 import Shortlist from './pages/Shortlist';
 import NavBar from './components/NavBar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import '@fontsource/roboto-condensed';
@@ -28,6 +28,20 @@ function App() {
 	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 	const [shortlistedRestaurant, setShortlistedRestaurant] = useState([]);
 	const [shallowCopy, setShallowCopy] = useState([]);
+	//singapore's coordinates
+	const LATITUDE = 1.3521;
+	const LONGITUDE = 103.8198;
+	const url = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="restaurant"](around:5000,${LATITUDE},${LONGITUDE});out;`;
+	const getRestaurant = async () => {
+		const res = await fetch(url);
+		const data = await res.json();
+		setRestaurant(data.elements);
+	};
+
+	useEffect(() => {
+		getRestaurant();
+		// get restaurant data on mount
+	}, []);
 	return (
 		<BrowserRouter>
 			<ThemeProvider theme={darkerTheme}>
@@ -52,8 +66,14 @@ function App() {
 					</header>
 					<main>
 						<Routes>
-							<Route path="/" element={<Main></Main>}></Route>
-							<Route path="shortlist" element={<Shortlist></Shortlist>}></Route>
+							<Route
+								path="/"
+								element={<Main getRestaurant={getRestaurant}></Main>}
+							></Route>
+							<Route
+								path="shortlist"
+								element={<Shortlist getRestaurant={getRestaurant}></Shortlist>}
+							></Route>
 						</Routes>
 					</main>
 				</RestaurantContext.Provider>

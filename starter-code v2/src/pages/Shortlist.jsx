@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import RestaurantContext from '../RestaurantContext';
 import { Box, Button, Divider, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
@@ -13,18 +13,11 @@ const backgroundDesign = {
 };
 const Shortlist = () => {
 	const restaurantContext = useContext(RestaurantContext);
-	const {
-		shortlistedRestaurant,
-		setShortlistedRestaurant,
-		setShalowCopy,
-		shallowCopy,
-	} = restaurantContext;
+	const { shortlistedRestaurant } = restaurantContext;
 
 	const handleDelete = (index) => {
 		shortlistedRestaurant.splice(index, 1);
 	};
-
-	useEffect(() => {}, [shortlistedRestaurant]);
 
 	return (
 		<div>
