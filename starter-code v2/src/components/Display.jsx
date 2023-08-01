@@ -45,17 +45,19 @@ const Display = () => {
 				>
 					{showAnything ? 'Decide again?' : 'Anything lor 🤡'}
 				</Button>
-				<Box sx={inputSx}>
-					<TextField
-						id="filled-basic"
-						label="Where is your location?"
-						variant="filled"
-						sx={{ margin: '0.5rem', width: '100%' }}
-					/>
-					<Button sx={{ width: '20%', height: '50%' }} variant="contained">
-						Submit
-					</Button>
-				</Box>
+				{!showAnything && (
+					<Box sx={inputSx}>
+						<TextField
+							id="filled-basic"
+							label="Where is your location?"
+							variant="filled"
+							sx={{ margin: '0.5rem', width: '100%' }}
+						/>
+						<Button sx={{ width: '20%', height: '50%' }} variant="contained">
+							Submit
+						</Button>
+					</Box>
+				)}
 			</div>
 		</div>
 	);
