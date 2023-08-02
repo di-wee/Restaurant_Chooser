@@ -7,29 +7,33 @@ import AsianModal from './AsianModal';
 import WesternModal from './WesternModal';
 import RestaurantContext from '../RestaurantContext';
 
-const ImagesButton = () => {
+const ImagesButton = (props) => {
 	const restaurantContext = useContext(RestaurantContext);
 	const { restaurant, setRestaurant, showList, setShowList } =
 		restaurantContext;
+	const { latitude, longitude, query } = props;
 
 	//states for modals opening and closing
 	const [showAsian, setShowAsian] = useState(false);
 	const [showWestern, setShowWestern] = useState(false);
 
-	//singapore's coordinates
-	const LATITUDE = 1.3521;
-	const LONGITUDE = 103.8198;
-	const url = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="restaurant"](around:5000,${LATITUDE},${LONGITUDE});out;`;
-	const getRestaurant = async () => {
+	// long and lat coordinates gotten from display
+
+	const getRestaurant = async (latitude, longitude) => {
+		//clearing previous restaurant data
+		setRestaurant([]);
+		const url = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="restaurant"](around:3000,${latitude},${longitude});out;`;
 		const res = await fetch(url);
 		const data = await res.json();
 		setRestaurant(data.elements);
 	};
 
 	useEffect(() => {
-		getRestaurant();
-		// get restaurant data on mount
-	}, []);
+		if (latitude && longitude) {
+			// fetch data only when latitude and longitude are available cos async
+			getRestaurant(latitude, longitude);
+		}
+	}, [latitude, longitude]);
 
 	const images = [
 		{
@@ -46,9 +50,14 @@ const ImagesButton = () => {
 
 	//for modal to appear
 	const handleOnClick = (image) => {
+		if (!query) {
+			return alert('Please enter your location!');
+		}
 		if (image.title === 'Asian Food') {
 			setShowAsian(true);
-			console.log('asian');
+			console.log(latitude);
+			console.log(longitude);
+			console.log(restaurant);
 		} else {
 			setShowWestern(true);
 			console.log('western');

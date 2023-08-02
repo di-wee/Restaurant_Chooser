@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Button, Typography, Box, TextField } from '@mui/material';
 import ImagesButton from './ImagesButton';
 import { indigo } from '@mui/material/colors';
 import Anything from './Anything';
+import RestaurantContext from '../RestaurantContext';
+import { LoadingButton } from '@mui/lab';
+
+const inputSx = {
+	margin: '0.5rem',
+	display: 'flex',
+	alignItems: 'center',
+};
 
 const Display = () => {
 	// creating theme/styling
@@ -15,16 +23,59 @@ const Display = () => {
 		margin: '0 6rem 0 6rem',
 	};
 
-	const inputSx = {
-		margin: '0.5rem',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-	};
 	const [showAnything, setShowAnything] = useState(false);
+	const [latitude, setLatitude] = useState();
+	const [longitude, setLongitude] = useState();
+	const [query, setQuery] = useState('');
+	const restaurantContext = useContext(RestaurantContext);
+	const { setRestaurant } = restaurantContext;
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleOnChange = (event) => {
+		setQuery(event.target.value);
+	};
+
+	const handleSubmit = async (event, location) => {
+		event.preventDefault();
+		setIsLoading(true); // start loading
+
+		try {
+			await getLocation(location);
+		} catch (err) {
+			alert('Error fetching location. Please try again.');
+		} finally {
+			setIsLoading(false); // stop loading
+		}
+	};
+
+	useEffect(() => {
+		getLocation(query);
+	}, []);
+
+	const handleReset = () => {
+		setRestaurant([]);
+		setQuery('');
+	};
+
+	const getLocation = async (location) => {
+		const res = await fetch(
+			`https://nominatim.openstreetmap.org/search?q=${location}&format=json&addressdetails=1&limit=1&countrycodes=SG`
+		);
+		if (!res.ok) {
+			throw new Error('Something went wrong!');
+		}
+		const data = await res.json();
+
+		// extracting latitude and longitude coordinates for geolocation query
+		const { lat, lon } = data[0];
+		setLongitude(lon);
+		setLatitude(lat);
+	};
+
 	const handleOnClick = () => {
 		showAnything ? setShowAnything(false) : setShowAnything(true);
 	};
+
 	return (
 		<div className="display">
 			<Box sx={styling}>
@@ -32,7 +83,15 @@ const Display = () => {
 					What do you feel like eating?
 				</Typography>
 			</Box>
-			{showAnything ? <Anything></Anything> : <ImagesButton></ImagesButton>}
+			{showAnything ? (
+				<Anything></Anything>
+			) : (
+				<ImagesButton
+					query={query}
+					latitude={latitude}
+					longitude={longitude}
+				></ImagesButton>
+			)}
 
 			<div className="anything row">
 				<Button
@@ -51,10 +110,25 @@ const Display = () => {
 							id="filled-basic"
 							label="Where is your location?"
 							variant="filled"
-							sx={{ margin: '0.5rem', width: '100%' }}
+							sx={{ margin: '0.5rem', width: '200%' }}
+							value={query}
+							onChange={handleOnChange}
 						/>
-						<Button sx={{ width: '20%', height: '50%' }} variant="contained">
-							Submit
+						<LoadingButton
+							sx={{ width: '20%', height: '50%' }}
+							variant="contained"
+							onClick={(event) => handleSubmit(event, query)}
+							loading={isLoading}
+						>
+							<span>Submit</span>
+						</LoadingButton>
+
+						<Button
+							sx={{ width: '120%', height: '50%', marginLeft: '0.5rem' }}
+							variant="contained"
+							onClick={handleReset}
+						>
+							Reset Location
 						</Button>
 					</Box>
 				)}

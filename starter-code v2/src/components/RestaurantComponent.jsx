@@ -24,6 +24,7 @@ const RestaurantComponent = (props) => {
 		}));
 		setShortlistedRestaurant((prevShortlist) => [...prevShortlist, place]);
 		setShallowCopy((prevShortlist) => [...prevShortlist, place]);
+		console.log;
 	};
 
 	const buttonStyle = {
