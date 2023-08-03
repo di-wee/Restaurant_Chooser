@@ -4,7 +4,7 @@
 
 - [Introduction](#introduction)
 - [Screenshots](#screenshots)
-- [Technologies](#technologies)
+- [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
 - [Next Steps](#next-steps)
   
