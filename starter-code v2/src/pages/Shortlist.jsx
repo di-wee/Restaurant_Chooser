@@ -13,12 +13,7 @@ const backgroundDesign = {
 };
 const Shortlist = () => {
 	const restaurantContext = useContext(RestaurantContext);
-	const {
-		shortlistedRestaurant,
-		setShortlistedRestaurant,
-		setShallowCopy,
-		shallowCopy,
-	} = restaurantContext;
+	const { shortlistedRestaurant, setShortlistedRestaurant } = restaurantContext;
 
 	const handleDelete = (places) => {
 		const filtered = shortlistedRestaurant.filter((restaurant) => {
