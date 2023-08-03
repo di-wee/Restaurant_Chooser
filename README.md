@@ -4,9 +4,9 @@
 
 - [Introduction](#introduction)
 - [Screenshots](#screenshots)
-- [Technologies Used](#technologies_used)
-- [Getting Started](#getting_started)
-- [Next Steps](#next_steps)
+- [Technologies](#technologies)
+- [Getting Started](#getting-started)
+- [Next Steps](#next-steps)
   
 ## Introduction
 
