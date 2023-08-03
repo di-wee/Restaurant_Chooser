@@ -54,8 +54,8 @@ function App() {
 					</header>
 					<main>
 						<Routes>
-							<Route path="/" element={<Main></Main>}></Route>
-							<Route path="shortlist" element={<Shortlist></Shortlist>}></Route>
+							<Route path="/" element={<Main />} />
+							<Route path="/shortlist" element={<Shortlist />} />
 						</Routes>
 					</main>
 				</RestaurantContext.Provider>

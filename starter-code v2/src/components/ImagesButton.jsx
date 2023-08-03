@@ -130,6 +130,8 @@ const ImagesButton = (props) => {
 					setRestaurant={setRestaurant}
 					showList={showList}
 					setShowList={setShowList}
+					latitude={latitude}
+					longitude={longitude}
 				></WesternModal>
 			)}
 		</div>

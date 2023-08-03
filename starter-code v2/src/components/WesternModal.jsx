@@ -112,7 +112,8 @@ const WesternModal = (props) => {
 				filterCafe();
 				break;
 		}
-		console.log(filteredRestaurant);
+		console.log(latitude);
+		console.log(longitude);
 		setShowWestern(false);
 		setShowList(true);
 	};
