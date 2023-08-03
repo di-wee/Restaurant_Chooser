@@ -38,6 +38,8 @@ Shortlist the restaurants that catch your eye:
 
 
 ## Getting Started
+Click on the deployment link below:
+(https://project-2-restaurant-chooser.netlify.app)
 
 ## Next Steps
 - Possibly changing up API with Google Places/Maps for a better interactive interface.
