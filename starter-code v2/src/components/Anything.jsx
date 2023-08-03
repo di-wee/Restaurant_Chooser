@@ -21,7 +21,7 @@ const Anything = () => {
 						maxHeight: { xs: 233, md: 167 },
 						maxWidth: { xs: 350, md: 250 },
 					}}
-					src="../../images/mcdonalds.png"
+					src="../images/mcdonalds.png"
 				></Box>
 				<Typography variant="h6">MCDONALDS LOR 🤡</Typography>
 			</Box>

@@ -25,7 +25,7 @@ const WesternModal = (props) => {
 		longitude,
 	} = props;
 
-	//lat and long coordinates from display location
+	//lat and long coordinates from display
 	const getCafe = async (latitude, longitude) => {
 		const cafeUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="cafe"](around:5000,${latitude},${longitude});out;`;
 		const res = await fetch(cafeUrl);
