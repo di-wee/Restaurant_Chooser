@@ -1,7 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import RestaurantContext from '../RestaurantContext';
-import { Box, Button, Divider, Grid, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	Collapse,
+	Divider,
+	Grid,
+	Typography,
+} from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const backgroundDesign = {
 	margin: '4rem 20rem 1rem 20rem',
@@ -31,29 +39,39 @@ const Shortlist = () => {
 							Shortlisted Restaurant
 						</Typography>
 						<Divider sx={{ margin: '1rem' }}></Divider>
-						{shortlistedRestaurant.map((place) => (
-							<Grid
-								key={place.id}
-								container
-								item
-								alignItems="center"
-								justifyContent="space-between"
-								padding={'1rem'}
-							>
-								<Grid item>
-									<Typography>Name of Restaurant: {place.tags.name}</Typography>
-								</Grid>
-								<Grid item>
-									<Button
-										sx={{ backgroundColor: deepOrange[900], color: '#FFFFFF' }}
-										variant="contained"
-										onClick={() => handleDelete(place)}
+						<TransitionGroup>
+							{shortlistedRestaurant.map((place) => (
+								//collapse animation upon delete
+								<Collapse key={place.id} in={true}>
+									<Grid
+										key={place.id}
+										container
+										item
+										alignItems="center"
+										justifyContent="space-between"
+										padding={'1rem'}
 									>
-										Delete
-									</Button>
-								</Grid>
-							</Grid>
-						))}
+										<Grid item>
+											<Typography>
+												Name of Restaurant: {place.tags.name}
+											</Typography>
+										</Grid>
+										<Grid item>
+											<Button
+												sx={{
+													backgroundColor: deepOrange[900],
+													color: '#FFFFFF',
+												}}
+												variant="contained"
+												onClick={() => handleDelete(place)}
+											>
+												Delete
+											</Button>
+										</Grid>
+									</Grid>
+								</Collapse>
+							))}
+						</TransitionGroup>
 					</Box>
 				</Grid>
 			</Grid>

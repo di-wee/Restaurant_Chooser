@@ -67,7 +67,7 @@ const Display = (props) => {
 		}
 		const data = await res.json();
 
-		// extracting latitude and longitude coordinates from geolocation query
+		// extracting latitude and longitude coordinates s geolocation query
 		const { lat, lon } = data[0];
 		setLongitude(lon);
 		setLatitude(lat);

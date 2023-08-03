@@ -25,7 +25,7 @@ const RestaurantComponent = (props) => {
 			[place.id]: !prev[place.id],
 		}));
 		setShortlistedRestaurant((prevShortlist) => [...prevShortlist, place]);
-		setShallowCopy((prevShortlist) => [...prevShortlist, place]);
+
 		console.log;
 	};
 
