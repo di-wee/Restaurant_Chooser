@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Display from '../components/Display';
 import RestaurantContext from '../RestaurantContext';
 import { Box } from '@mui/material';
@@ -15,8 +15,8 @@ const backgroundDesign = {
 	flexGrow: '2',
 };
 const Main = () => {
-	//managing states for usage
 	const restaurantContext = useContext(RestaurantContext);
+	//to swop out RestaurantComponent with Display once food selection is chosen
 	const { showList } = restaurantContext;
 
 	return (

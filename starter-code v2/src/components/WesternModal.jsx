@@ -11,24 +11,34 @@ import './ImageButton.css';
 import RestaurantContext from '../RestaurantContext';
 
 const WesternModal = (props) => {
+	//state management
 	const restaurantContext = useContext(RestaurantContext);
 	//to reset list without directly manipulating OG state; a shallow copy
 	const { setFilteredRestaurant, setCafe, cafe, filteredRestaurant } =
 		restaurantContext;
-	const { setShowWestern, showWestern, restaurant, setShowList } = props;
-	const LATITUDE = 1.3521;
-	const LONGITUDE = 103.8198;
-	const cafeUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="cafe"](around:5000,${LATITUDE},${LONGITUDE});out;`;
-	const getCafe = async () => {
+	const {
+		setShowWestern,
+		showWestern,
+		restaurant,
+		setShowList,
+		latitude,
+		longitude,
+	} = props;
+
+	//lat and long coordinates from display location
+	const getCafe = async (latitude, longitude) => {
+		const cafeUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="cafe"](around:5000,${latitude},${longitude});out;`;
 		const res = await fetch(cafeUrl);
 		const data = await res.json();
 		setCafe(data.elements);
 	};
 
 	useEffect(() => {
-		getCafe();
-		// get cafe data on mount
-	}, []);
+		if (latitude && longitude) {
+			// fetch data only when latitude and longitude are available cos async
+			getCafe(latitude, longitude);
+		}
+	}, [latitude, longitude]);
 
 	const images = [
 		{

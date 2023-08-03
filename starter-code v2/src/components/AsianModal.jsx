@@ -15,6 +15,7 @@ const AsianModal = (props) => {
 	const restaurantContext = useContext(RestaurantContext);
 	//to reset list without directly manipulating OG restaurant state; creating a shallow copy
 	const { setFilteredRestaurant, filteredRestaurant } = restaurantContext;
+	//lifting state fulfilled
 	const { setShowAsian, showAsian, restaurant, setShowList } = props;
 	//filtering data according to button choice
 	const filterRestaurant = (restcuisine) => {

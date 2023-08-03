@@ -6,13 +6,7 @@ import Anything from './Anything';
 import RestaurantContext from '../RestaurantContext';
 import { LoadingButton } from '@mui/lab';
 
-const inputSx = {
-	margin: '0.5rem',
-	display: 'flex',
-	alignItems: 'center',
-};
-
-const Display = () => {
+const Display = (props) => {
 	// creating theme/styling
 	const styling = {
 		backgroundColor: 'rgba(255,255,255, 0.5)',
@@ -22,29 +16,35 @@ const Display = () => {
 		padding: '16px',
 		margin: '0 6rem 0 6rem',
 	};
+	const inputSx = {
+		margin: '0.5rem',
+		display: 'flex',
+		alignItems: 'center',
+	};
 
+	//state management
 	const [showAnything, setShowAnything] = useState(false);
 	const [latitude, setLatitude] = useState();
 	const [longitude, setLongitude] = useState();
-	const [query, setQuery] = useState('');
 	const restaurantContext = useContext(RestaurantContext);
-	const { setRestaurant } = restaurantContext;
+	const { setRestaurant, query, setQuery } = restaurantContext;
 	const [isLoading, setIsLoading] = useState(false);
 
+	//storing queried location from input box
 	const handleOnChange = (event) => {
 		setQuery(event.target.value);
 	};
 
 	const handleSubmit = async (event, location) => {
 		event.preventDefault();
-		setIsLoading(true); // start loading
+		setIsLoading(true); // start loading button
 
 		try {
 			await getLocation(location);
 		} catch (err) {
 			alert('Error fetching location. Please try again.');
 		} finally {
-			setIsLoading(false); // stop loading
+			setIsLoading(false); // stop loading button
 		}
 	};
 
@@ -52,6 +52,7 @@ const Display = () => {
 		getLocation(query);
 	}, []);
 
+	//reset location
 	const handleReset = () => {
 		setRestaurant([]);
 		setQuery('');
@@ -66,7 +67,7 @@ const Display = () => {
 		}
 		const data = await res.json();
 
-		// extracting latitude and longitude coordinates for geolocation query
+		// extracting latitude and longitude coordinates from geolocation query
 		const { lat, lon } = data[0];
 		setLongitude(lon);
 		setLatitude(lat);
@@ -107,7 +108,8 @@ const Display = () => {
 				{!showAnything && (
 					<Box sx={inputSx}>
 						<TextField
-							id="filled-basic"
+							fullWidth
+							id="filled-basic fullWidth"
 							label="Where is your location?"
 							variant="filled"
 							sx={{ margin: '0.5rem', width: '200%' }}

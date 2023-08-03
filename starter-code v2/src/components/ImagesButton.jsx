@@ -8,6 +8,7 @@ import WesternModal from './WesternModal';
 import RestaurantContext from '../RestaurantContext';
 
 const ImagesButton = (props) => {
+	//state management
 	const restaurantContext = useContext(RestaurantContext);
 	const { restaurant, setRestaurant, showList, setShowList } =
 		restaurantContext;
@@ -18,7 +19,6 @@ const ImagesButton = (props) => {
 	const [showWestern, setShowWestern] = useState(false);
 
 	// long and lat coordinates gotten from display
-
 	const getRestaurant = async (latitude, longitude) => {
 		//clearing previous restaurant data
 		setRestaurant([]);
@@ -50,6 +50,7 @@ const ImagesButton = (props) => {
 
 	//for modal to appear
 	const handleOnClick = (image) => {
+		//empty input box check
 		if (!query) {
 			return alert('Please enter your location!');
 		}
@@ -129,6 +130,8 @@ const ImagesButton = (props) => {
 					setRestaurant={setRestaurant}
 					showList={showList}
 					setShowList={setShowList}
+					latitude={latitude}
+					longitude={longitude}
 				></WesternModal>
 			)}
 		</div>

@@ -35,14 +35,9 @@ body::before {
 }
 
 .anything {
-	margin: 0rem 10rem 0 10rem;
+	margin: 0rem 8rem 0 8rem;
 }
 
-.display h1 {
-	text-align: center;
-	margin: 4rem 0rem 1rem 0rem;
-	color: rgba(0, 0, 0, 0.8);
-}
 .restList {
 	margin: 1rem 0rem 0 0rem;
 }

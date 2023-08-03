@@ -6,6 +6,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 
 const RestaurantComponent = (props) => {
+	//state managemenet
 	const restaurantContext = useContext(RestaurantContext);
 	const {
 		filteredRestaurant,
@@ -16,7 +17,8 @@ const RestaurantComponent = (props) => {
 		setShallowCopy,
 	} = restaurantContext;
 	const [shortlist, setShortlist] = useState({});
-	//setting boolean; true/ false to filtered restaurant. if previously true, then set to false. vice versa
+
+	//setting boolean; true/ false property to filtered restaurant. if previously true, then set to false. vice versa
 	const handleShortlist = (place) => {
 		setShortlist((prev) => ({
 			...prev,
@@ -32,7 +34,9 @@ const RestaurantComponent = (props) => {
 		padding: '2px',
 		margin: '2rem',
 	};
+	//brings back DisplayComponent
 	const cantDecide = () => setShowList(false);
+	//filtering for the first 5 restaurant
 	const firstFiveRest = filteredRestaurant.slice(0, 5);
 	return (
 		<Grid container spacing={1} alignItems={'center'} justifyContent={'center'}>
@@ -46,7 +50,7 @@ const RestaurantComponent = (props) => {
 						<Button
 							sx={{ backgroundColor: indigo[300], color: '#FFFFFF' }}
 							variant="contained"
-							// directly acessing the true/false value of each keyvalue pair
+							// directly accessing the true/false value of each keyvalue pair
 							startIcon={
 								shortlist[place.id] ? (
 									<StarIcon></StarIcon>
