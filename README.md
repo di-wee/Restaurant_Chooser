@@ -35,6 +35,7 @@ Shortlist the restaurants that catch your eye:
 - HTML, CSS and Javascript
 - React: JavaScript library for building user interfaces.
 - Component Libraries: MaterialUI
+- APIs: OpenStreetMap and Nominatim
 
 
 ## Getting Started
