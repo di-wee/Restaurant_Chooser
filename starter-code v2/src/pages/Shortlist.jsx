@@ -9,7 +9,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 
 const backgroundDesign = {
 	margin: '4rem 20rem 1rem 20rem',

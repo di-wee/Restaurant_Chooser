@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Display from '../components/Display';
 import RestaurantContext from '../RestaurantContext';
 import { Box } from '@mui/material';
