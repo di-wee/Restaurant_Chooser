@@ -96,7 +96,9 @@ const AsianModal = (props) => {
 	};
 
 	return (
-		<Dialog onClose={handleClose} open={showAsian}>
+		<Dialog
+			onClose={handleClose}
+			open={showAsian}>
 			<DialogTitle sx={{ textAlign: 'center' }}>Asian Food</DialogTitle>
 			<DialogContent dividers>
 				<Box
@@ -107,35 +109,31 @@ const AsianModal = (props) => {
 						width: '100%',
 						justifyContent: 'center',
 						justifyItems: 'center',
-					}}
-				>
+					}}>
 					{images.map((image) => (
 						<ButtonBase
 							focusRipple
 							key={image.title}
-							className="imageButton"
+							className='imageButton'
 							sx={{
 								width: image.width,
 								margin: '1.5rem',
 							}}
-							onClick={() => handleClick(image)}
-						>
+							onClick={() => handleClick(image)}>
 							<span
-								className="imageSrc"
-								style={{ backgroundImage: `url(${image.url})` }}
-							></span>
-							<span className="imageBackdrop"></span>
-							<span className="image">
+								className='imageSrc'
+								style={{ backgroundImage: `url(${image.url})` }}></span>
+							<span className='imageBackdrop'></span>
+							<span className='image'>
 								<Typography
 									style={{
 										position: 'relative',
 										padding: '16px',
 										paddingTop: '8px',
 										paddingBottom: '14px',
-									}}
-								>
+									}}>
 									{image.title}
-									<span className="imageMarked"></span>
+									<span className='imageMarked'></span>
 								</Typography>
 							</span>
 						</ButtonBase>
